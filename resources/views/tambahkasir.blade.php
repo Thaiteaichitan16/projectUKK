@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Data Kategori Buku</title>
+    <title>Tambah Admin</title>
 
     <meta name="description" content="" />
 
@@ -147,45 +147,36 @@
             </li>
 
             <!-- Layouts -->
-            <li class="menu-item active open">
+            <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Data Perpustakaan</div>
               </a>
 
               <ul class="menu-sub">
-                {{-- <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
-                    <div data-i18n="Without menu">Without menu</div>
-                  </a>
-                </li> --}}
                 <li class="menu-item">
                   <a href="{{url('databuku')}}" class="menu-link">
-                    <div data-i18n="Without navbar">Data Buku</div>
+                    <div data-i18n="Without menu">Data Buku</div>
                   </a>
                 </li>
-                <li class="menu-item active">
+                <li class="menu-item">
                   <a href="{{url('datakategori')}}" class="menu-link">
-                    <div data-i18n="Container">Data Kategori Buku</div>
+                    <div data-i18n="Without navbar">Data Kategori Buku</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="{{url('datarelasi')}}" class="menu-link">
-                    <div data-i18n="Fluid">Data Kategori Relasi</div>
+                    <div data-i18n="Container">Data Kategori Relasi</div>
                   </a>
                 </li>
-                {{-- <li class="menu-item">
-                  <a href="layouts-blank.html" class="menu-link">
-                    <div data-i18n="Blank">Blank</div>
-                  </a>
-                </li> --}}
+                
               </ul>
             </li>
-            
+
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Data Account Admin</span>
             </li>
-            <li class="menu-item">
+            <li class="menu-item active open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Account Settings</div>
@@ -196,7 +187,7 @@
                     <div data-i18n="Account">Data Petugas</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item active">
                   <a href="{{url('tambahadmin')}}" class="menu-link">
                     <div data-i18n="Notifications">Tambah Petugas</div>
                   </a>
@@ -215,63 +206,109 @@
 
         <!-- Layout container -->
         <div class="layout-page">
-          <!-- Navbar -->
-
-
-          <!-- / Navbar -->
+          
 
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
+{{-- <div class="container-fluid flex-grow-1 container-p-y"> --}}
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Data Kategori</h4>
-            
-               <!-- Basic Bootstrap Table -->
-               <div class="card">
-                <div class="demo-inline-spacing d-flex justify-content-end mx-2">
-                  <a href="{{url('tambahkategori')}}"><button type="button" class="btn btn-outline-primary">Tambah</button></a>
+              <h4 class="fw-bold py-3 mb-4">
+                <span class="text-muted fw-light">Tambah Petugas /</span> Tambah
+              </h4>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <ul class="nav nav-pills flex-column flex-md-row mb-3">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{url('dataadmin')}}"
+                        ><i class="bx bx-user me-1"></i> Data Petugas</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="javascript:void(0);"
+                        ><i class="bx bx-bell me-1"></i> Tambah Petugas</a
+                      >
+                    </li>
+                    {{-- <li class="nav-item">
+                      <a class="nav-link" href="pages-account-settings-connections.html"
+                        ><i class="bx bx-link-alt me-1"></i> Connections</a
+                      >
+                    </li> --}}
+                  </ul>
+        <div class="card mb-4">
+          <div class="card">
+                  <!-- /Account -->
+          <div class="card-body">
+            <form id="formAccountSettings" method="POST">
+              <div class="row">
+                <div class="mb-3 col-md-6">
+                  <label for="Username" class="form-label">Username</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="Username"
+                    name="Username"
+                    placeholder="Masukkan Username"
+                    autofocus
+                  />
                 </div>
-                <div class="text-nowrap">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Nama Kategori</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-border-bottom-0">
-                      @foreach ($kate as $item)
-                      <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$item->NamaKategori}}</strong></td>
-                       <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="{{url('kedit/'.$item->KategoriID)}}"
-                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                              >
-                              <a class="dropdown-item" href="khapus/{{$item->KategoriID}}"
-                                ><i class="bx bx-trash me-1"></i> Delete</a
-                              >
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      @endforeach
-                      
-                    </tbody>
-                  </table>
-                  {{ $kate->onEachSide(5)->links() }}
+                <div class="mb-3 col-md-6">
+                  <label for="Password" class="form-label">Password</label>
+                  <input class="form-control" type="text" name="Password" id="Password" placeholder="Masukkan Password" />
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label for="NamaLengkap" class="form-label">Nama Lengkap</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="NamaLengkap"
+                    name="NamaLengkap"
+                    {{-- value="john.doe@example.com" --}}
+                    placeholder="Masukkan Nama Lengkap"
+                  />
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label for="Level" class="form-label">Level</label>
+                  <select id="Level" class="select2 form-select">
+                    <option value="Admin">Admin</option>
+                    <option value="Petugas">Petugas</option>
+                  </select>
+                </div>
+                {{-- <div class="mb-3 col-md-6">
+                  <label for="timeZones" class="form-label">Timezone</label>
+                  <select id="timeZones" class="select2 form-select">
+                    <option value="">Select Timezone</option>
+                    <option value="-12">(GMT-12:00) International Date Line West</option>
+                    
+                  </select> --}}
+                {{-- </div>
+                <div class="mb-3 col-md-6">
+                  <label for="currency" class="form-label">Currency</label>
+                  <select id="currency" class="select2 form-select">
+                    <option value="">Select Currency</option>
+                    <option value="usd">USD</option>
+                    <option value="euro">Euro</option>
+                    <option value="pound">Pound</option>
+                    <option value="bitcoin">Bitcoin</option>
+                  </select>
+                </div>
+              </div> --}}
+              <div class="mt-2">
+                <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+              </div>
+            </form>
+          </div>
+          <!-- /Account -->
+                  </div>
                 </div>
               </div>
-              <!--/ Basic Bootstrap Table -->
             </div>
             <!-- / Content -->
 
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
+             <!-- Footer -->
+             <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
                   ©
@@ -279,7 +316,7 @@
                     document.write(new Date().getFullYear());
                   </script>
                   , made with ❤️ by
-                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Wildan Saputra </a>
+                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Wildan Saputra</a>
                 </div>
                 <div>
                   <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
@@ -315,7 +352,7 @@
     </div>
     <!-- / Layout wrapper -->
 
-   
+    
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
